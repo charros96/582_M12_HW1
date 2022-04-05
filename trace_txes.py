@@ -39,6 +39,8 @@ class TXO:
     def from_tx_hash(cls,tx_hash,n=0):
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         print(tx)
+        txo = tx.get('vout')[n]
+        print(txo)
         pass
         #YOUR CODE HERE
 
