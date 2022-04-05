@@ -44,8 +44,8 @@ class TXO:
         amount = int(txo.get('value'))
         owner = txo.get('scriptPubKey').get('hex')
         time = datetime.fromtimestamp(tx.get('time'))
-        TXO(tx_hash,n,amount,owner,time)
-        pass
+        return TXO(tx_hash,n,amount,owner,time)
+        #pass
         
 
     def get_inputs(self,d=1):
