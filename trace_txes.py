@@ -50,22 +50,26 @@ class TXO:
 
     def get_inputs(self,d=1):
         tx = rpc_connection.getrawtransaction(self.tx_hash,True)
-        inputs = tx.get('vin')
-        print(tx)
-        print(inputs)
+        parents = tx.get('vin')
+        #print(tx)
+        #print(inputs)
         print(rpc_connection.getrawtransaction(inputs[0].get('txid'),True))
-        """
-        for input in inputs:
-            tx = rpc_connection.getrawtransaction(input.get(txid),True)    
-            print(tx)
-            for i in range(len(inputs)):
-                txo = tx.get('vin')[i]
-                print(txo)
-                amount = int(txo.get('value')*pow(10,8))
-                owner = txo.get('scriptPubKey').get('hex')
-                time = datetime.fromtimestamp(tx.get('time'))
-                self.inputs.append(TXO(self.tx_hash,i,amount,owner,time))   
-        """
+        for depth in range(d):
+            for i in len(parents):
+                parent = rpc_connection.getrawtransaction(inputs[i].get('txid'),True)
+                for j in range(len(parent.get('vout'))
+                    self.inputs.append(from_tx_hash(parent.get('txid'),j)
+                """
+                print(parent)
+                for i in range(len(inputs)):
+                    txo = tx.get('vin')[i]
+                    print(txo)
+                    amount = int(txo.get('value')*pow(10,8))
+                    owner = txo.get('scriptPubKey').get('hex')
+                    time = datetime.fromtimestamp(tx.get('time'))
+                    self.inputs.append(TXO(self.tx_hash,i,amount,owner,time)) 
+                """  
+        
         pass
         #YOUR CODE HERE
 
