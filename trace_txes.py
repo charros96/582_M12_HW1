@@ -51,14 +51,21 @@ class TXO:
     def get_inputs(self,d=1):
         tx = rpc_connection.getrawtransaction(self.tx_hash,True)
         inputs = tx.get('vin')
-        #print(inputs)
-        for i in range(len(inputs)):
-            txo = tx.get('vin')[i]
-            print(txo)
-            amount = int(txo.get('value')*pow(10,8))
-            owner = txo.get('scriptPubKey').get('hex')
-            time = datetime.fromtimestamp(tx.get('time'))
-            self.inputs.append(TXO(self.tx_hash,i,amount,owner,time))
+        print(tx)
+        print(inputs)
+        """
+        for depth in range(d):
+            for txo in inputs:
+
+                for i in range(len(inputs)):
+                    txo = tx.get('vin')[i]
+                    print(txo)
+                    amount = int(txo.get('value')*pow(10,8))
+                    owner = txo.get('scriptPubKey').get('hex')
+                    time = datetime.fromtimestamp(tx.get('time'))
+                    self.inputs.append(TXO(self.tx_hash,i,amount,owner,time))
+            inputs = t
+        """
         pass
         #YOUR CODE HERE
 
