@@ -53,7 +53,7 @@ class TXO:
         inputs = tx.get('vin')
         print(tx)
         print(inputs)
-        print(rpc_connection.getrawtransaction(inputs[0].get('txid'),True)
+        print(rpc_connection.getrawtransaction(inputs[0].get('txid'),True))
         """
         for input in inputs:
             tx = rpc_connection.getrawtransaction(input.get(txid),True)    
@@ -64,8 +64,7 @@ class TXO:
                 amount = int(txo.get('value')*pow(10,8))
                 owner = txo.get('scriptPubKey').get('hex')
                 time = datetime.fromtimestamp(tx.get('time'))
-                self.inputs.append(TXO(self.tx_hash,i,amount,owner,time))
-            
+                self.inputs.append(TXO(self.tx_hash,i,amount,owner,time))   
         """
         pass
         #YOUR CODE HERE
