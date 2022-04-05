@@ -56,10 +56,12 @@ class TXO:
         #print("tx.vin")
         #print(parent)
         #print("tx.vin.txid.vout")
+        tx_get_inputs = TXO.from_tx_hash('1620c59574743195fb5ad0d0bf96ac4e16a78f3912a58d23c6e2aeaf2595bfe7')
+        print(tx_get_inputs)
         vin_outputs = rpc_connection.getrawtransaction(parent_id,True).get('vout')
         for i in range(len(vin_outputs)):
             self.inputs.append(TXO.from_tx_hash(parent_id,i))
-        print(self.inputs)
+        #print(self.inputs)
         return self.inputs
         #gparent = rpc_connection.getrawtransaction(parents[0].get('txid'),True)
         #self.inputs.append(TXO.from_tx_hash(gparent.get('txid')))
@@ -82,4 +84,5 @@ class TXO:
         
         pass
         #YOUR CODE HERE
+
 
