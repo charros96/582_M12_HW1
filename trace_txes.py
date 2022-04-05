@@ -45,10 +45,19 @@ class TXO:
         owner = txo.get('scriptPubKey').get('hex')
         time = datetime.fromtimestamp(tx.get('time'))
         TXO(tx_hash,n,amount,owner,time)
-        #pass
+        pass
         
 
     def get_inputs(self,d=1):
+        tx = rpc_connection.getrawtransaction(self.tx_hash,True)
+        inputs = tx.get('vin')
+        print(inputs)
+        for i in range(len(inputs)):
+            txo = tx.get('vin')[i]
+            amount = int(txo.get('value'))
+            owner = txo.get('scriptPubKey').get('hex')
+            time = datetime.fromtimestamp(tx.get('time'))
+            self.inputs.append(TXO(self.tx_hash,i,amount,owner,time))
         pass
         #YOUR CODE HERE
 
