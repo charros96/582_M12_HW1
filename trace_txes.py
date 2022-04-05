@@ -40,6 +40,9 @@ class TXO:
         tx = rpc_connection.getrawtransaction(tx_hash,True)
         print(tx)
         txo = tx.get('vout')[n]
+        amount = int(txo.get('value'))
+        owner = txo.get('scriptPubKey').get('hex')
+        time = datetime(tx.get('time'))
         print(txo)
         pass
         #YOUR CODE HERE
