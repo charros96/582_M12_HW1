@@ -50,7 +50,7 @@ class TXO:
 
     def get_inputs(self,d=1):
         tx = rpc_connection.getrawtransaction(self.tx_hash,True)
-        parent_id = tx.get('vin').get('txid')
+        parent_id = tx.get('vin')[0].get('txid')
         #print("TX")
         #print(tx)
         #print("tx.vin")
