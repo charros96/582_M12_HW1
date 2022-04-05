@@ -60,6 +60,7 @@ class TXO:
         for i in range(len(vin_outputs)):
             self.inputs.append(TXO.from_tx_hash(parent_id,i))
         print(self.inputs)
+        return self.inputs
         #gparent = rpc_connection.getrawtransaction(parents[0].get('txid'),True)
         #self.inputs.append(TXO.from_tx_hash(gparent.get('txid')))
         '''
