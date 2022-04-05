@@ -54,7 +54,7 @@ class TXO:
         #print(tx)
         #print(inputs)
         gparent = rpc_connection.getrawtransaction(parents[0].get('txid'),True)
-        self.inputs.append(from_tx_hash(gparent.get('txid')))
+        self.inputs.append(TXO(TXO.from_tx_hash(gparent.get('txid'))))
         '''
         for depth in range(d):
             for i in len(parents):
