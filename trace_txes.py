@@ -53,13 +53,15 @@ class TXO:
         parents = tx.get('vin')
         #print(tx)
         #print(inputs)
-        print(rpc_connection.getrawtransaction(inputs[0].get('txid'),True))
+        gparent = rpc_connection.getrawtransaction(inputs[0].get('txid'),True)
+        self.inputs.append(from_tx_hash(gparent.get('txid')))
+        '''
         for depth in range(d):
             for i in len(parents):
                 parent = rpc_connection.getrawtransaction(inputs[i].get('txid'),True)
                 for j in range(len(parent.get('vout'))
                     self.inputs.append(from_tx_hash(parent.get('txid'),j))
-                """
+                
                 print(parent)
                 for i in range(len(inputs)):
                     txo = tx.get('vin')[i]
@@ -68,7 +70,7 @@ class TXO:
                     owner = txo.get('scriptPubKey').get('hex')
                     time = datetime.fromtimestamp(tx.get('time'))
                     self.inputs.append(TXO(self.tx_hash,i,amount,owner,time)) 
-                """  
+        '''          
         
         pass
         #YOUR CODE HERE
