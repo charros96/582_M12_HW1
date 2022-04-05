@@ -58,7 +58,7 @@ class TXO:
             for i in len(parents):
                 parent = rpc_connection.getrawtransaction(inputs[i].get('txid'),True)
                 for j in range(len(parent.get('vout'))
-                    self.inputs.append(from_tx_hash(parent.get('txid'),j)
+                    self.inputs.append(from_tx_hash(parent.get('txid'),j))
                 """
                 print(parent)
                 for i in range(len(inputs)):
