@@ -53,7 +53,7 @@ class TXO:
         parents = tx.get('vin')
         #print(tx)
         #print(inputs)
-        gparent = rpc_connection.getrawtransaction(inputs[0].get('txid'),True)
+        gparent = rpc_connection.getrawtransaction(parents[0].get('txid'),True)
         self.inputs.append(from_tx_hash(gparent.get('txid')))
         '''
         for depth in range(d):
