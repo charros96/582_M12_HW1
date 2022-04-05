@@ -50,13 +50,15 @@ class TXO:
 
     def get_inputs(self,d=1):
         tx = rpc_connection.getrawtransaction(self.tx_hash,True)
-        parents = tx.get('vin')
+        parent = tx.get('vin')
         print("TX")
         print(tx)
         print("tx.vin")
-        print(parents)
+        print(parent)
         print("tx.vin.txid.vout")
-        print(rpc_connection.getrawtransaction(parents[0].get('txid'),True).get('vout'))
+        vin_outputs = rpc_connection.getrawtransaction(parent.get('txid'),True).get('vout')
+        for i in range(len(vin_outputs)):
+            self.inputs.append(TXO.from_tx_hash(parent.get('tx_id'),i))
         #gparent = rpc_connection.getrawtransaction(parents[0].get('txid'),True)
         #self.inputs.append(TXO.from_tx_hash(gparent.get('txid')))
         '''
