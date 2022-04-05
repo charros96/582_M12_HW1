@@ -39,7 +39,7 @@ class TXO:
     def from_tx_hash(cls,tx_hash,n=0):
         #YOUR CODE HERE
         tx = rpc_connection.getrawtransaction(tx_hash,True)
-        #print(tx)
+        print(tx)
         txo = tx.get('vout')[n]
         amount = int(txo.get('value'))
         owner = txo.get('scriptPubKey').get('hex')
