@@ -52,7 +52,7 @@ class TXO:
         inputs = [rpc_connection.getrawtransaction(self.tx_hash,True)]
         
         
-        for depth in range(d)
+        for depth in range(d):
           for input in inputs:
             vins = input.get('vin')
             for vin in vins:
