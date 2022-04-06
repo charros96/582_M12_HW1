@@ -50,20 +50,21 @@ class TXO:
 
     def get_inputs(self,d=1):
         tx = rpc_connection.getrawtransaction(self.tx_hash,True)
-        parent_id = tx.get('vin')[0].get('txid')
+        vins = tx.get('vin')
         #print("TX")
         #print(tx)
         #print("tx.vin")
         #print(parent)
         #print("tx.vin.txid.vout")
-        tx_get_inputs = TXO.from_tx_hash('1620c59574743195fb5ad0d0bf96ac4e16a78f3912a58d23c6e2aeaf2595bfe7')
-        print(rpc_connection.getrawtransaction(tx_get_inputs.tx_hash,True).get('vin'))
-        tx_get_parent = TXO.from_tx_hash(rpc_connection.getrawtransaction(tx_get_inputs.tx_hash,True).get('vin')[0].get('txid'))
-        print(rpc_connection.getrawtransaction(tx_get_parent.tx_hash,True).get('vin'))
-        print(rpc_connection.getrawtransaction(tx_get_parent.tx_hash,True).get('vout'))
-        vin_outputs = rpc_connection.getrawtransaction(parent_id,True).get('vout')
-        for i in range(len(vin_outputs)):
-            self.inputs.append(TXO.from_tx_hash(parent_id,i))
+        #tx_get_inputs = TXO.from_tx_hash('1620c59574743195fb5ad0d0bf96ac4e16a78f3912a58d23c6e2aeaf2595bfe7')
+        #print(rpc_connection.getrawtransaction(tx_get_inputs.tx_hash,True).get('vin'))
+        #tx_get_parent = TXO.from_tx_hash(rpc_connection.getrawtransaction(tx_get_inputs.tx_hash,True).get('vin')[0].get('txid'))
+        #print(rpc_connection.getrawtransaction(tx_get_parent.tx_hash,True).get('vin'))
+        #print(rpc_connection.getrawtransaction(tx_get_parent.tx_hash,True).get('vout'))
+        #vin_outputs = rpc_connection.getrawtransaction(parent_id,True).get('vout')
+        for vin in vins:
+
+            self.inputs.append(TXO.from_tx_hash(vin.get('txid'),vin.get('vout')))
         #print(self.inputs)
         return self.inputs
         #gparent = rpc_connection.getrawtransaction(parents[0].get('txid'),True)
