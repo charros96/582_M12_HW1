@@ -49,14 +49,14 @@ class TXO:
         
 
     def get_inputs(self,d=1):
-        if d==0:
+        if (d==0):
           pass
 
-        tx = [rpc_connection.getrawtransaction(self.tx_hash,True)]
+        tx = rpc_connection.getrawtransaction(self.tx_hash,True)
         
         
         
-        vins = input.get('vin')
+        vins = tx.get('vin')
         for vin in vins:
           txo = TXO.from_tx_hash(vin.get('txid'),vin.get('vout'))
           self.inputs.append(txo)
